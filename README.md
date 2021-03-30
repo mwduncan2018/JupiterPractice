@@ -5,6 +5,4 @@
 ##### @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 ### POM XML Stuff
-##### The API is needed for compile time for JUnit 5 (junit-jupiter-api)
-##### The engine runs the tests (junit-jupiter-engine)
-##### To run tests with Maven, you need the Surefire plugin
+##### The API is needed for compile time for JUnit 5 (junit-jupiter-api). The engine runs the tests (junit-jupiter-engine). To run tests with Maven, you need the Surefire plugin.
