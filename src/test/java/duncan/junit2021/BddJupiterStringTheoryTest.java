@@ -45,15 +45,24 @@ class BddJupiterStringTheoryTest {
 			});
 		}
 
-		@DisplayName("When I add one hundred million strings to the list, Then the operation is completed in less than 60 seconds")
+		@DisplayName("When I add one hundred million strings to the list, Then the operation is completed in less than 5 seconds")
 		@Test
 		void whenIAddOneMillionStringsToTheList() {
-			Assertions.assertTimeout(Duration.ofSeconds(10), () -> {
-				IntStream.range(0, 99999999).forEach(x -> {
+			Assertions.assertTimeout(Duration.ofSeconds(5), () -> {
+				IntStream.range(0, 999999).forEach(x -> {
 					strList.add(String.valueOf(x));
 				});
 			});
+		}
 
+		@DisplayName("When I add one hundred thousand strings to the list, Then the operation is completed in less than 10 millis")
+		@Test
+		void whenIAddOneHundredThousandStringsToTheList() {
+			Assertions.assertTimeoutPreemptively(Duration.ofMillis(10), () -> {
+				IntStream.range(0, 99999).forEach(x -> {
+					strList.add(String.valueOf(x));
+				});
+			});
 		}
 
 		@DisplayName("When I add F to the list")
@@ -75,7 +84,7 @@ class BddJupiterStringTheoryTest {
 			@DisplayName("Then the list contains the correct characters")
 			@Test
 			void thenTheListContainsTheCorrectCharacters() {
-				assertAll("Then the list contains the correct characters",
+				assertAll("Assert all message?",
 						() -> assertTrue(strList.stream().filter(x -> x.equals("A")).count() > 0),
 						() -> assertTrue(strList.stream().filter(x -> x.equals("B")).count() > 0),
 						() -> assertTrue(strList.stream().filter(x -> x.equals("C")).count() > 0),

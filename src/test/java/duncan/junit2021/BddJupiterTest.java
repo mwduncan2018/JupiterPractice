@@ -21,15 +21,6 @@ class BddJupiterTest {
 
 	static Map<String, Integer> dict = new HashMap<>();
 
-	@BeforeEach
-	void stepDefinition() {
-		dict.put("One", 1);
-		dict.put("Two", 2);
-		dict.put("Three", 3);
-		dict.put("Four", 5);
-		dict.put("Five", 6);
-	}
-
 	@DisplayName("Given the dictionary has been initialized")
 	@Nested
 	@TestInstance(TestInstance.Lifecycle.PER_METHOD)
@@ -37,13 +28,22 @@ class BddJupiterTest {
 
 		@BeforeEach
 		void stepDefinition() {
-			dict.put("Six", 6);
+			dict.put("One", 1);
+			dict.put("Two", 2);
+			dict.put("Three", 3);
+			dict.put("Four", 5);
+			dict.put("Five", 6);
 		}
 
 		@DisplayName("When I put six in the dictionary")
 		@Nested
 		@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 		class whenIPutSixInTheDictionary {
+
+			@BeforeEach
+			void stepDefinition() {
+				dict.put("Six", 6);
+			}
 
 			@DisplayName("Then six should be in the dictionary")
 			@Test
@@ -58,6 +58,6 @@ class BddJupiterTest {
 			}
 
 		}
-		
+
 	}
 }
